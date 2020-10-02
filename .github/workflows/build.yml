@@ -15,10 +15,11 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
+      - name: test
+        run: chmod +x sysinfo | ./sysinfo
       - name: Release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          files: sysinfo
+        run: curl \
+             -H "Authorization: token ${secrets.GITHUB_TOKEN}" \
+             -H "Content-Type: application/octet-stream" \
+             --data-binary "sysinfo" \
+             "https://uploads.github.com/repos/dephraiim/sysinfo/releases/1/assets?name=sysinfo"
