@@ -19,8 +19,4 @@ jobs:
         run: chmod +x sysinfo 
              ./sysinfo
       - name: Release
-        run: curl \
-             -H "Authorization: token $secrets.GITHUB_TOKEN" \
-             -H "Content-Type: application/octet-stream" \
-             --data-binary "sysinfo" \
-             "https://uploads.github.com/repos/dephraiim/sysinfo/releases/1/assets?name=sysinfo"
+        run: curl -H "Authorization: token $secrets.GITHUB_TOKEN" -H "Content-Type: application/octet-stream" --data-binary "sysinfo "https://uploads.github.com/repos/dephraiim/sysinfo/releases/1/assets?name=sysinfo"
