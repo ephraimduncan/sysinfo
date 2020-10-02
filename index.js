@@ -1,26 +1,11 @@
 #!/usr/bin/env node
 const os = require("os");
 const exec = require("child_process").execSync;
-const motherboard = exec("cat /sys/devices/virtual/dmi/id/product_name");
 
-const { r, g, b, w, c, m, y, k } = [
-  ["r", 1],
-  ["g", 2],
-  ["b", 4],
-  ["w", 7],
-  ["c", 6],
-  ["m", 5],
-  ["y", 3],
-  ["k", 0],
-].reduce(
-  (cols, col) => ({
-    ...cols,
-    [col[0]]: (f) => `\x1b[3${col[1]}m${f}\x1b[0m`,
-  }),
-  {}
-);
-
-const mag = (text) => `\x1b[35m${text}\x1b[0m`;
+const red = (text) => `\x1b[31m${text}\x1b[0m`;
+const blue = (text) => `\x1b[34m${text}\x1b[0m`;
+const yellow = (text) => `\x1b[33m${text}\x1b[0m`;
+const trimBuffer = (string) => string.toString("utf-8").trim();
 
 const secondsToHM = (s) => {
   s = Number(s);
@@ -28,8 +13,6 @@ const secondsToHM = (s) => {
   let m = Math.floor((s % 3600) / 60);
   return `${("0" + h).slice(-2)}:${("0" + m).slice(-2)}`;
 };
-
-const trimBuffer = (string) => string.toString("utf-8").trim();
 
 const arch = os.arch();
 const userName = os.userInfo().username;
@@ -44,12 +27,14 @@ const editor = trimBuffer(exec("echo $EDITOR")).split("/")[3];
 const ppid = trimBuffer(exec("ps -o 'ppid='")).split(" ");
 const cmd = trimBuffer(exec(`ps -o 'cmd=' -p ${ppid[0]}`));
 const terminal = !cmd.startsWith("/") ? cmd : cmd.split(" ")[0].split("/")[3];
+const motherboard = exec("cat /sys/devices/virtual/dmi/id/product_name");
 const distro = trimBuffer(exec("cat /etc/*-release | grep ^ID=")).slice(3);
 const codename = trimBuffer(
   exec("cat /etc/*-release | grep ^DISTRIB_CODENAME=")
 )
   .slice(17)
   .toLocaleLowerCase();
+
 const bars = () => {
   let bar = "";
   for (let i = 1; i < 7; i++) {
@@ -59,19 +44,19 @@ const bars = () => {
 };
 
 const sysinfo = `
-${b(userName)}@${r(hostName)}
-      ${y("os")} ~ ${distro}
-      ${y("sh")} ~ ${shell}
-      ${y("wm")} ~ ${trimBuffer(wm)}
-      ${y("up")} ~ ${secondsToHM(up)}
-     ${y("cpu")} ~ ${cpu[0]}
-     ${y("mem")} ~ ${memory}MB
-    ${y("code")} ~ ${codename}
-    ${y("arch")} ~ ${arch}
-    ${y("kern")} ~ ${kernel}
-    ${y("term")} ~ ${terminal}
-   ${y("board")} ~ ${trimBuffer(motherboard)}
-  ${y("editor")} ~ ${editor}
+${blue(userName)}@${red(hostName)}
+      ${yellow("os")} ~ ${distro}
+      ${yellow("sh")} ~ ${shell}
+      ${yellow("wm")} ~ ${trimBuffer(wm)}
+      ${yellow("up")} ~ ${secondsToHM(up)}
+     ${yellow("cpu")} ~ ${cpu[0]}
+     ${yellow("mem")} ~ ${memory}MB
+    ${yellow("code")} ~ ${codename}
+    ${yellow("arch")} ~ ${arch}
+    ${yellow("kern")} ~ ${kernel}
+    ${yellow("term")} ~ ${terminal}
+   ${yellow("board")} ~ ${trimBuffer(motherboard)}
+  ${yellow("editor")} ~ ${editor}
     ${bars()}
   `;
 
