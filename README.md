@@ -5,19 +5,23 @@ A system information tool written with JavaScript
 ### Installation
 If you have `npm`, you can ran
 ```bash
-npm install -g sysinfo
+npm install -g sysinfojs
 ```
 OR
 ```bash
-npx sysinfo
+npx sysinfojs
 ```
 
 Without `npm`
 ```bash
-$ curl -sL install-sysinfo.now.sh | sh
-
 # Requires "Administrative Rights"
+
+$ curl -sL install-sysinfo.now.sh | sh
 ```
+
+OR
+
+You can get the binaries from the [releases](https://github.com/dephraiim/sysinfo/releases/tag/v1.0.0) page and add it to your path.
 
 ### Build
 ```bash
@@ -30,4 +34,3 @@ npm run build
 
 ### Demo
 ![Demo](public/test.png)
-
