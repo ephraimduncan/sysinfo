@@ -1,12 +1,9 @@
 {
   "name": "sysinfo",
   "version": "1.0.0",
-  "description": "",
+  "description": "A file to get system info on linux",
   "main": "index.js",
   "bin": "./index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+  "author": "Ephraim Atta-Duncan",
+  "license": "MIT"
 }
