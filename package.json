@@ -9,7 +9,5 @@
   },
   "author": "Ephraim Atta-Duncan",
   "license": "MIT",
-  "devDependencies": {
-    "pkg": "^4.4.9"
-  }
+  "devDependencies": {}
 }
