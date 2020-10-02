@@ -2,11 +2,8 @@ name: Build & Release
 
 on:
   push:
-    branches:
-      - main
     tags:
-      - v*
-  pull_request:
+      - "v*.*.*"
 
 jobs:
   build:
