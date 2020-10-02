@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 const os = require("os");
 const exec = require("child_process").execSync;
 
@@ -57,8 +58,8 @@ ${blue(userName)}@${red(hostName)}
     ${yellow("term")} ~ ${terminal}
    ${yellow("board")} ~ ${trimBuffer(motherboard)}
   ${yellow("editor")} ~ ${editor}
-    ${bars()}
-  `;
+   ${bars()}
+`;
 
 process.stdout.write("\x1B[2J\x1B[3J\x1B[H");
 console.log(sysinfo);

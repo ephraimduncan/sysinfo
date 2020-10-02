@@ -4,6 +4,10 @@
   "description": "A file to get system info on linux",
   "main": "index.js",
   "bin": "./index.js",
+  "scripts": {
+    "build": "pkg -t node14-linux ."
+  },
   "author": "Ephraim Atta-Duncan",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {}
 }
