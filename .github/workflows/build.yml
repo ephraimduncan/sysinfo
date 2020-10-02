@@ -17,3 +17,7 @@ jobs:
         run: npm run build
       - name: test
         run: ./sysinfo
+      - name: Test Installation
+        run: 
+          curl -sL https://install-sysinfo.now.sh/
+          
