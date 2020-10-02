@@ -12,9 +12,11 @@ echo "Installing sysinfo"
 
 # Get binaries from github release page
 
-wget https://github.com/dephraiim/sysinfo/releases/download/v1.0.0/sysinfo
+wget -q https://github.com/dephraiim/sysinfo/releases/download/v1.0.0/sysinfo
 
-sudo cp sysinfo /usr/bin
+echo "Administrative Rights Required"
+
+sudo cp sysinfo /usr/bin && chmod +x /usr/bin/sysinfo
 
 echo "Installation Complete."
-echo "Run with "sysinfo""
+echo "Run with 'sysinfo'"
