@@ -51,18 +51,18 @@ const bars = () => {
 
 const sysinfo = `
 ${blue(userName)}@${red(hostName)}
-      ${yellow("os")} ~ ${distro}
-      ${yellow("sh")} ~ ${shell}
-      ${yellow("wm")} ~ ${trimBuffer(wm)}
-      ${yellow("up")} ~ ${secondsToHM(up)}
-     ${yellow("cpu")} ~ ${cpu[0]}
-     ${yellow("mem")} ~ ${memory}MB
-    ${yellow("code")} ~ ${codename}
-    ${yellow("arch")} ~ ${arch}
-    ${yellow("kern")} ~ ${kernel}
-    ${yellow("term")} ~ ${terminal}
-   ${yellow("board")} ~ ${trimBuffer(motherboard)}
-  ${yellow("editor")} ~ ${editor}
+${yellow("os")} ~ ${distro}
+    ${yellow("sh")} ~ ${shell}
+    ${yellow("wm")} ~ ${trimBuffer(wm)}
+    ${yellow("up")} ~ ${secondsToHM(up)}
+   ${yellow("cpu")} ~ ${cpu[0]}
+   ${yellow("mem")} ~ ${memory}MB
+  ${yellow("code")} ~ ${codename}
+  ${yellow("arch")} ~ ${arch}
+  ${yellow("kern")} ~ ${kernel}
+  ${yellow("term")} ~ ${terminal}
+ ${yellow("board")} ~ ${trimBuffer(motherboard)}
+${yellow("editor")} ~ ${editor}
    ${bars()}
 `;
 
