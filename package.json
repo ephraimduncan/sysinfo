@@ -1,16 +1,19 @@
 {
   "name": "sysinfojs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A file to get system info on linux",
-  "main": "index.js",
-  "bin": "./index.js",
+  "main": "dist/index.js",
+  "bin": "./dist/index.js",
   "scripts": {
-    "build": "pkg -t node12-linux . -o sysinfo"
+    "build": "pkg -t node12-linux ./dist/index.js -o sysinfo"
   },
   "author": "Ephraim Atta-Duncan",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^14.11.5",
     "pkg": "^4.4.9"
   },
-  "files": ["index.js"]
+  "files": [
+    "dist/index.js"
+  ]
 }
