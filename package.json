@@ -10,7 +10,10 @@
   "author": "Ephraim Atta-Duncan",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^14.11.5",
     "pkg": "^4.4.9"
   },
-  "files": ["index.js"]
+  "files": [
+    "index.js"
+  ]
 }
