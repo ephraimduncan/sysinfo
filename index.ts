@@ -1,19 +1,19 @@
 #!/usr/bin/env node
 
-const os = require("os");
-const exec = require("child_process").execSync;
+import * as os from "os";
+import * as child from "child_process";
+const exec = child.execSync;
 
 if (os.platform() !== "linux") {
   throw new Error("OS Not Supported.");
-  process.exit(1);
 }
 
-const red = (text) => `\x1b[31m${text}\x1b[0m`;
-const blue = (text) => `\x1b[34m${text}\x1b[0m`;
-const yellow = (text) => `\x1b[33m${text}\x1b[0m`;
-const trimBuffer = (string) => string.toString("utf-8").trim();
+const red = (text: string) => `\x1b[31m${text}\x1b[0m`;
+const blue = (text: string) => `\x1b[34m${text}\x1b[0m`;
+const yellow = (text: string) => `\x1b[33m${text}\x1b[0m`;
+const trimBuffer = (string: Buffer) => string.toString("utf-8").trim();
 
-const secondsToHM = (s) => {
+const secondsToHM = (s: number) => {
   s = Number(s);
   let h = Math.floor(s / 3600);
   let m = Math.floor((s % 3600) / 60);
@@ -41,8 +41,8 @@ const codename = trimBuffer(
   .slice(17)
   .toLocaleLowerCase();
 
-const bars = () => {
-  let bar = "";
+const bars = (): string => {
+  let bar: string;
   for (let i = 1; i < 7; i++) {
     bar = bar + `\x1b[3${i}m▅▅\x1b[0m`;
   }
