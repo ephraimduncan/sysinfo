@@ -1,25 +1,22 @@
 #!/usr/bin/env node
-
-import * as os from "os";
-import * as child from "child_process";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const os = require("os");
+const child = require("child_process");
 const exec = child.execSync;
-
 if (os.platform() !== "linux") {
-  throw new Error("OS Not Supported.");
+    throw new Error("OS Not Supported.");
 }
-
-const red = (text: string) => `\x1b[31m${text}\x1b[0m`;
-const blue = (text: string) => `\x1b[34m${text}\x1b[0m`;
-const yellow = (text: string) => `\x1b[33m${text}\x1b[0m`;
-const trimBuffer = (string: Buffer) => string.toString("utf-8").trim();
-
-const secondsToHM = (s: number) => {
-  s = Number(s);
-  let h = Math.floor(s / 3600);
-  let m = Math.floor((s % 3600) / 60);
-  return `${("0" + h).slice(-2)}:${("0" + m).slice(-2)}`;
+const red = (text) => `\x1b[31m${text}\x1b[0m`;
+const blue = (text) => `\x1b[34m${text}\x1b[0m`;
+const yellow = (text) => `\x1b[33m${text}\x1b[0m`;
+const trimBuffer = (string) => string.toString("utf-8").trim();
+const secondsToHM = (s) => {
+    s = Number(s);
+    let h = Math.floor(s / 3600);
+    let m = Math.floor((s % 3600) / 60);
+    return `${("0" + h).slice(-2)}:${("0" + m).slice(-2)}`;
 };
-
 const arch = os.arch();
 const userName = os.userInfo().username;
 const hostName = os.hostname();
@@ -35,20 +32,16 @@ const cmd = trimBuffer(exec(`ps -o 'cmd=' -p ${ppid[0]}`));
 const terminal = !cmd.startsWith("/") ? cmd : cmd.split(" ")[0].split("/")[3];
 const motherboard = exec("cat /sys/devices/virtual/dmi/id/product_name");
 const distro = trimBuffer(exec("cat /etc/*-release | grep ^ID=")).slice(3);
-const codename = trimBuffer(
-  exec("cat /etc/*-release | grep ^DISTRIB_CODENAME=")
-)
-  .slice(17)
-  .toLocaleLowerCase();
-
-const bars = (): string => {
-  let bar: string = "";
-  for (let i = 1; i < 7; i++) {
-    bar = bar + `\x1b[3${i}m▅▅\x1b[0m`;
-  }
-  return bar;
+const codename = trimBuffer(exec("cat /etc/*-release | grep ^DISTRIB_CODENAME="))
+    .slice(17)
+    .toLocaleLowerCase();
+const bars = () => {
+    let bar = "";
+    for (let i = 1; i < 7; i++) {
+        bar = bar + `\x1b[3${i}m▅▅\x1b[0m`;
+    }
+    return bar;
 };
-
 const sysinfo = `
 ${blue(userName)}@${red(hostName)}
 ${yellow("os")} ~ ${distro}
@@ -65,6 +58,5 @@ ${yellow("os")} ~ ${distro}
 ${yellow("editor")} ~ ${editor}
    ${bars()}
 `;
-
 process.stdout.write("\x1B[2J\x1B[3J\x1B[H");
 console.log(sysinfo);
