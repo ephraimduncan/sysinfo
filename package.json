@@ -1,6 +1,6 @@
 {
   "name": "sysinfojs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A file to get system info on linux",
   "main": "dist/index.js",
   "bin": "./dist/index.js",
